@@ -1,0 +1,15 @@
+
+.partition {
+  float: left;
+  padding: 20px;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.partition-filled {
+  background: radial-gradient(white, grey);
+}
+
+#counter {
+  text-align: center;
+}

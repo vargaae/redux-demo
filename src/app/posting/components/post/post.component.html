@@ -1,0 +1,61 @@
+<div *ngIf="post | async as p">
+
+  <h2>{{ p.text }}</h2>
+
+  <h4>Votes: {{ p.likes }}</h4>
+
+  <button (click)="upvote()">Upvote</button>
+  <button (click)="downvote()">Downvote</button>
+  <button (click)="resetPost()">Reset</button>
+
+  <input [(ngModel)]="text">
+  <button (click)="editText()">Change Title</button>
+  <!-- <button (click)="addText()">Add TODO</button> -->
+
+</div>
+
+<!-- <p>
+  My Todos from Array:
+</p>
+<ul>
+  <li *ngFor="let t of todos">
+    {{ t.title }}
+  </li>
+</ul>
+
+  <p>
+    My Todos from Observable Array:
+    -Iterating is Not working yet!
+  </p> -->
+  <!-- <div id="wrapper">
+    <div id="shopping-list">
+      <div id="list">
+        <h2>Shopping List</h2>
+
+        <ul>
+          <li *ngFor="let todolisting of shoppingItems$ | async" (click)="removeItem(todolisting.id)">
+            {{ todolisting.name }}
+            <button (click)="removeTodo(todolisting.id)">-</button>
+
+            <br><br>
+          </li>
+        </ul>
+      </div>
+
+      <form (ngSubmit)="addTodo()">
+        <input
+          type="text"
+          [(ngModel)]="newShoppingItem.name"
+          placeholder="Item"
+          name="itemName"
+          />
+        <button type="submit" >+</button>
+      </form>
+    </div>
+  </div> -->
+  <!-- <ul>
+    <li *ngFor="let todo of todos$ | async">
+      {{ todo.title }}
+    </li>
+  </ul> -->
+

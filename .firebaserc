@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fir-demo-57c5b": {
+      "hosting": {
+        "redux-demo": [
+          "fir-demo-57c5b"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fir-demo-57c5b"
+  }
+}

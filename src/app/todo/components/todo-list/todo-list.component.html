@@ -1,0 +1,47 @@
+<h1>Todo List</h1>
+<!-- <div>
+
+  <div>
+    <div>
+      <h2>Todo List</h2>
+
+      <ul>
+        <li *ngFor="let t of todos$ | async">
+          {{ t.title }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div> -->
+
+<!-- <div id="wrapper">
+  <div id="shopping-list">
+    <div id="list">
+      <h2>Shopping List</h2>
+
+      <ul>
+        <li *ngFor="let t of todos$ | async">
+          {{ t.title }}
+          <br><br>
+        </li>
+      </ul>
+    </div>
+
+    <form (ngSubmit)="addTodo()">
+      <input type="text" [(ngModel)]="newTodoItem.title" placeholder="Item" name="itemName"/>
+      <button type="submit" >+</button>
+    </form>
+  </div>
+</div> -->
+
+<form (ngSubmit)="addTodo()">
+<input type="text" [(ngModel)]="newTodoItem.title" placeholder="Todo" name="itemName"/>
+<button type="submit">Add</button>
+<ul>
+  <li *ngFor="let t of todos$ | async">
+     <span (click)="toggleTodo(t)" [class.completed]="t.isCompleted">{{ t.title }}</span>
+    <button (click)="removeTodo(t.id)">Remove</button>
+   </li>
+ </ul>
+</form>
