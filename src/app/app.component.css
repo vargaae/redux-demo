@@ -1,4 +1,35 @@
+h2 {
+  letter-spacing: 0.4rem;
+}
 
+img {
+  float: left;
+  height: 3rem;
+  padding: 1rem;
+}
+
+
+.greeting {
+  text-align: center;
+}
+
+.box {
+padding: 2rem;
+}
+
+.title {
+  padding: 0.1rem;
+  padding-left: 0.3rem;
+  background: black;
+  color: white;
+  filter: drop-shadow();
+}
+
+.container {
+  background-image: url(https://ngrx.io/assets/images/header.svg);
+  margin: 0;
+  padding: 0;
+}
 .partition {
   float: left;
   padding: 20px;

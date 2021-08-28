@@ -3,4 +3,9 @@ export interface Post {
   likes: number;
   // todos: any[];
   // lastUpdate: Date;
+  key: string;
+  pushKey: string;
+  loading: boolean;
+  votes: number;
+  error: string;
 }

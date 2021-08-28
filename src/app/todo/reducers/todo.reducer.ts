@@ -11,7 +11,8 @@ import { on } from '@ngrx/store';
 const initialState: Array<TodoItem> = [
   {
     id: "1775935f-36fd-467e-a667-09f95b917f6d",
-    title: 'Study Angular'
+    title: 'Study Angular',
+    lastUpdate: '2021. 08. 20. 15:15:05'
   }
 ]
 // lastUpdate: null

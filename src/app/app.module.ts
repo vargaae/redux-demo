@@ -21,7 +21,10 @@ import { simpleReducer } from './simple.reducer';
 import { TodoDashboardComponent } from './todo/components/todo-dashboard/todo-dashboard.component';
 import { TodoListComponent } from './todo/components/todo-list/todo-list.component';
 import { TodoReducer } from './todo/reducers/todo.reducer';
-
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
+import { PostEffects } from './posting/effects/post.effects';
+import {MatButtonModule} from '@angular/material/button';
 // import { TodoService } from './todo/services/todo.service';
 // import { NgRedux, NgReduxModule, select } from '@angular-redux/store';
 // import { rootReducer } from './store';
@@ -55,7 +58,12 @@ import { TodoReducer } from './todo/reducers/todo.reducer';
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    EffectsModule.forRoot([
+      PostEffects,
+      AppEffects
+    ]),
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

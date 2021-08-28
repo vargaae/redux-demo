@@ -40,7 +40,12 @@
 <button type="submit">Add</button>
 <ul>
   <li *ngFor="let t of todos$ | async">
-     <span (click)="toggleTodo(t)" [class.completed]="t.isCompleted">{{ t.title }}</span>
+     <span
+        (click)="toggleTodo(t)"
+        [class.completed]="t.isCompleted"
+        >
+        {{ t.title }} - lastUpdate: {{ t.lastUpdate }}
+      </span>
     <button (click)="removeTodo(t.id)">Remove</button>
    </li>
  </ul>

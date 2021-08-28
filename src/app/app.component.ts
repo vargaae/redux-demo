@@ -14,7 +14,7 @@ interface AppState {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'REDUX - @ngrx/store';
+  title = "Andras Varga's REDUX-demo Project";
   // counter = 0;
 
   message$: Observable<string>

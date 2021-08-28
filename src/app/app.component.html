@@ -1,17 +1,48 @@
-<h1>
-  {{title}}
-</h1>
+<header class="title">
+<img src="https://ngrx.io/assets/images/badge.svg" alt="" />
 
-<div>
+<h2>
+  {{title}}
+</h2>
+<p>
+  @ngrx/store/effects/entity
+</p>
+</header>
+
+<div class="container">
+
+<div class="box greeting">
   <h2>{{ message$ | async }}</h2>
 
-<button (click)="spanishMessage()">Spanish</button>
-<button (click)="frenchMessage()">French</button>
+<button mat-raised-button color="primary" (click)="spanishMessage()">Spanish</button>
+<button mat-raised-button color="accent" (click)="frenchMessage()">French</button>
+</div>
+<hr>
+<div class="box">
+  <h1>
+    PostApp - REDUX - @ngrx/store/effects
+  </h1>
+  <app-post></app-post>
+
+</div>
+<hr>
+<div class="box">
+  <h1>
+    Shopping List App - REDUX - @ngrx/store
+  </h1>
+  <app-shopping-list></app-shopping-list>
 </div>
 
+</div>
+
+<div class="title">
 <h1>
-  ToDoApp - REDUX - @ngrx/store
+  ToDoApp - DashBoard
 </h1>
+<p>
+  @ngrx/store
+</p>
+</div>
 
 <div class="partition">
   <app-todo-list></app-todo-list>
@@ -27,19 +58,4 @@
 <h3>@ngrx/store Tutorial </h3>
 
 <app-my-counter></app-my-counter>
-</div>
-
-<div class="partition">
-  <h1>
-    PostApp - REDUX - @ngrx/store
-  </h1>
-  <app-post></app-post>
-
-</div>
-
-<div>
-  <h1>
-    Shopping List App - REDUX - @ngrx/store
-  </h1>
-  <app-shopping-list></app-shopping-list>
 </div>

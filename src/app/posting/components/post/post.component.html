@@ -1,18 +1,57 @@
-<div *ngIf="post | async as p">
+<div class="container">
+<img
+  src="https://www.gstatic.com/devrel-devsite/prod/ve25c3e040096d9860a1b86503ff88692bbcb336f8204869702074147185c6987/firebase/images/lockup.png"
+  alt=""
+/>
+<img src="https://ngrx.io/assets/images/badge.svg" alt="" />
+
+
+<div *ngIf="postState$ | async as post">
+  <i *ngIf="post.loading" class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+<span class="sr-only">Loading...</span>
+  <div>
+    <h4>
+      <!-- Download is ready! TEXT : -->
+      {{ post.text }}
+      <p>
+        <input [(ngModel)]="text">
+        <button mat-raised-button color="primary" (click)="editText()">Change Title</button>
+      </p>
+
+      <h4>Value: + {{ post.val }}</h4>
+      <h4>Votes: {{ post.votes }}</h4>
+
+      <button mat-raised-button color="primary" (click)="vote(post, 1)">
+        Upvote
+      </button>
+      <!-- <button mat-raised-button color="warn" (click)="vote(post, -1)">
+        Downvote
+      </button> -->
+      <!-- TODO: ITERÁCIÓT STABILIZÁLNI!!! -->
+      <!-- <div *ngFor="let recipe of recipeBookState$"></div> -->
+    </h4>
+  </div>
+</div>
+<p>
+<button mat-raised-button color="accent" (click)="getRecipes()">Load Post from Firebase</button>
+</p>
+</div>
+
+<!-- <div *ngIf="post | async as p">
 
   <h2>{{ p.text }}</h2>
 
   <h4>Votes: {{ p.likes }}</h4>
 
-  <button (click)="upvote()">Upvote</button>
-  <button (click)="downvote()">Downvote</button>
-  <button (click)="resetPost()">Reset</button>
+  <button mat-raised-button color="primary" (click)="upvote()">Upvote</button>
+  <button mat-raised-button color="primary" (click)="downvote()">Downvote</button>
+  <button mat-raised-button color="primary" (click)="resetPost()">Reset</button>
 
   <input [(ngModel)]="text">
-  <button (click)="editText()">Change Title</button>
-  <!-- <button (click)="addText()">Add TODO</button> -->
+  <button mat-raised-button color="primary" (click)="editText()">Change Title</button>
 
-</div>
+</div> -->
+<!-- <button (click)="addText()">Add TODO</button> -->
 
 <!-- <p>
   My Todos from Array:
@@ -27,7 +66,7 @@
     My Todos from Observable Array:
     -Iterating is Not working yet!
   </p> -->
-  <!-- <div id="wrapper">
+<!-- <div id="wrapper">
     <div id="shopping-list">
       <div id="list">
         <h2>Shopping List</h2>
@@ -53,9 +92,8 @@
       </form>
     </div>
   </div> -->
-  <!-- <ul>
+<!-- <ul>
     <li *ngFor="let todo of todos$ | async">
       {{ todo.title }}
     </li>
   </ul> -->
-

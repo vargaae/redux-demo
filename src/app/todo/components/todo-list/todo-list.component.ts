@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { TodoAppState } from '../../models/todo-app-state.model';
@@ -15,7 +15,9 @@ import { AddTodoAction, RemoveTodoAction } from '../../actions/todo.actions';
 })
 export class TodoListComponent implements OnInit {
 // Read the comment in TodoService
-newTodoItem: TodoItem = {id: '', title: '' };
+  // public todoToggled = new EventEmitter();
+  // REDUX WAY
+newTodoItem: TodoItem = {id: '', title: '', lastUpdate: new Date().toLocaleString() };
 // todos$: Observable<string>;
  todos$: Observable<Array<TodoItem>>;
 
@@ -30,7 +32,7 @@ addTodo() {
   this.newTodoItem.id = uuid();
 
   this.store.dispatch(new AddTodoAction(this.newTodoItem))
-  this.newTodoItem = { id: '', title: '' };
+  this.newTodoItem = { id: '', title: '', lastUpdate: new Date().toLocaleString() };
 }
 
 removeTodo(id: string) {
@@ -55,6 +57,12 @@ removeTodo(id: string) {
   }
 
   // @select() todos;
+
+
+  toggleTodo(todo) {
+        // todo.isCompleted = !todo.isCompleted;
+        // this.todoToggled.emit(todo);
+      }
 
   // toggleTodo(todo) {
   //   this.ngRedux.dispatch({ type: TOGGLE_TODO, id: todo.id });

@@ -23,8 +23,10 @@ interface AppState {
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  post: Observable<Post>
+  post: Observable<Post>;
+  postState$: Observable<Post>;
   // todos: Observable<any[]>;
+  // recipeBookState$: Observable<Array<Recipe>> = this.store.select(state => state.recipeBook);
 
   text: string; /// form input val
   // todos$: Observable<AppState[]> = this.store.select(state => state.todos);
@@ -42,6 +44,7 @@ export class PostComponent implements OnInit {
     private store: Store<AppState>,
     // private store: Store<{ todos: AppState[] }>
     ) {
+      this.postState$ = this.store.select('post');
     this.post = this.store.select('post');
     // this.todos$ = store.select('todos');
     // this.todos$ = store.select('lastUpdate');
@@ -49,8 +52,18 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.store.dispatch({ type: '[RECIPEBOOK] GET_RECIPES'})
+
     // this.todos$ = this.store.select(store => store.todolisting);
     // this.shoppingItems = this.store.select('shopping');
+  }
+
+  getRecipes() {
+    this.store.dispatch(new PostActions.GetPost('/posts/testPost'));
+  }
+
+  vote(post: Post, val: number) {
+    this.store.dispatch(new PostActions.VoteUpdateAction({ post, val }));
   }
 
   editText() {
@@ -78,7 +91,7 @@ export class PostComponent implements OnInit {
   // }
 
   resetPost() {
-    this.store.dispatch(new PostActions.Reset())
+    // this.store.dispatch(new PostActions.Reset())
   }
 
   upvote() {
