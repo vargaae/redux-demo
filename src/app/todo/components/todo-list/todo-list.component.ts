@@ -11,58 +11,67 @@ import { AddTodoAction, RemoveTodoAction } from '../../actions/todo.actions';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent implements OnInit {
-// Read the comment in TodoService
-  // public todoToggled = new EventEmitter();
+  // Read the comment in TodoService
+  // non Redux way to be toggled
+  todoToggled = new EventEmitter();
   // REDUX WAY
-newTodoItem: TodoItem = {id: '', title: '', lastUpdate: new Date().toLocaleString() };
-// todos$: Observable<string>;
- todos$: Observable<Array<TodoItem>>;
+  newTodoItem: TodoItem = {
+    id: '',
+    title: '',
+    lastUpdate: new Date().toLocaleString(),
+  };
+  // todos$: Observable<string>;
+  todos$: Observable<Array<TodoItem>>;
 
   // title: string; /// form input val
 
-constructor(private store: Store<TodoAppState>) {
-  // this.todos$ = store.select('todos');
-}
+  constructor(private store: Store<TodoAppState>) {
+    // this.todos$ = store.select('todos');
+  }
 
-addTodo() {
-  if(!this.newTodoItem.title) return;
-  this.newTodoItem.id = uuid();
+  addTodo() {
+    if (!this.newTodoItem.title) return;
+    this.newTodoItem.id = uuid();
 
-  this.store.dispatch(new AddTodoAction(this.newTodoItem))
-  this.newTodoItem = { id: '', title: '', lastUpdate: new Date().toLocaleString() };
-}
+    this.store.dispatch(new AddTodoAction(this.newTodoItem));
+    this.newTodoItem = {
+      id: '',
+      title: '',
+      lastUpdate: new Date().toLocaleString(),
+    };
+  }
 
-removeTodo(id: string) {
-  this.store.dispatch(new RemoveTodoAction(id));
-}
+  removeTodo(id: string) {
+    this.store.dispatch(new RemoveTodoAction(id));
+  }
 
-// addTodo(input) {
+  // addTodo(input) {
   //   if (!input.value) return;
 
   //   this.ngRedux.dispatch({ type: ADD_TODO, title: input.value });
 
   //   input.value = '';
   // }
-// addTodo(input) {
+  // addTodo(input) {
   // if (!input.value) return;
 
   // this.store.dispatch(todoActions.ADD_TODO());
-// }
+  // }
 
   ngOnInit() {
-    this.todos$ = this.store.select(store => store.todolisting);
+    this.todos$ = this.store.select((store) => store.todolisting);
   }
 
-  // @select() todos;
 
-
-  toggleTodo(todo) {
-        // todo.isCompleted = !todo.isCompleted;
-        // this.todoToggled.emit(todo);
-      }
+  toggleTodo(id: any) {
+    this.store.dispatch(new RemoveTodoAction(id));
+    // non Redux way
+    // id.isCompleted = !id.isCompleted;
+    // this.todoToggled.emit(id);
+  }
 
   // toggleTodo(todo) {
   //   this.ngRedux.dispatch({ type: TOGGLE_TODO, id: todo.id });
@@ -71,5 +80,4 @@ removeTodo(id: string) {
   // removeTodo(todo) {
   //   this.ngRedux.dispatch({ type: REMOVE_TODO, id: todo.id });
   // }
-
 }

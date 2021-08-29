@@ -1,14 +1,15 @@
 <div>
 <p>
-  <button (click)="decrement()">-</button>
 
-   Current Count: {{ count$ | async }} 
+  <button mat-raised-button color="primary" (click)="decrement()">-</button>
 
-  <button (click)="increment()">+</button>
+  Messages: {{ count$ | async }}
 
+  <button mat-raised-button color="accent" (click)="increment()">+</button>
+
+  <button mat-raised-button color="warn" (click)="reset()">Reset Counter</button>
 </p>
 
-  <button (click)="reset()">Reset Counter</button>
 
 </div>
 

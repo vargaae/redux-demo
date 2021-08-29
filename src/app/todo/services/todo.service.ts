@@ -1,4 +1,4 @@
-// import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 // The two components we have in this app (TodoList and TodoDashboard) do not have a parent/child
 // relationship. Whilst we can enforce this relationship in this app, there are cases where two
@@ -25,13 +25,13 @@
 // like undo/redo, plus we get great tools for debugging our application as you'll see in the
 // next lecture.
 
-// @Injectable()
-// export class TodoService {
-//   private todos = [];
+@Injectable()
+export class TodoService {
+  private todos = [];
 //   public todoAdded = new EventEmitter();
 //   public todoToggled = new EventEmitter();
 //   public todoRemoved = new EventEmitter();
-//   public todosCleared = new EventEmitter();
+  public todosCleared = new EventEmitter();
 
 //   addTodo(title) {
 //     var todo = { id: this.todos.length + 1, title: title };
@@ -54,10 +54,10 @@
 //     return this.todos;
 //   }
 
-//   clearTodos() {
-//     this.todos = [];
-//     this.todosCleared.emit();
-//   }
+  clearTodos() {
+    this.todos = [];
+    this.todosCleared.emit();
+  }
 
   // count$: Observable<number>;
 
@@ -76,4 +76,4 @@
   // reset() {
   //   this.store.dispatch(reset());
   // }
-// }
+}

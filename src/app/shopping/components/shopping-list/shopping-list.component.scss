@@ -6,7 +6,7 @@ body {
   text-align: center;
   color: white;
   display: flex;
-  height: 45vh;
+  // height: 25vh;
   flex-direction: column;
   justify-content: center;
   margin: 0px;
@@ -33,29 +33,31 @@ form > input {
 
 form > button {
   border: 0px;
-  background: #10ac84;
+  background: #8010ac;
+  // background: #10ac84;
   color: white;
   outline: none;
 
   &:hover {
-    background: #006266;
+    background: #4d00662e;
+    // background: #006266;
   }
 }
 
 button {
   border: 0px;
-  background: #10ac84;
+  background: #8010ac;
   color: white;
   outline: none;
 
   &:hover {
-    background: #006266;
+    background: #4d00662e;
   }
 }
 
 ul {
   list-style: none;
-  background: #1dd1a1;
+  background: #ad1dd1;
   padding: 10px 0px;
   margin: 0px;
 }
@@ -65,7 +67,7 @@ li {
 }
 
 h2 {
-  background: #10ac84;
+  background: #8010ac;
   padding: 10px 0px;
   margin: 0px;
 }

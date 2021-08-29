@@ -1,4 +1,24 @@
 <h1>Todo List</h1>
+<form (ngSubmit)="addTodo()">
+  <input
+    type="text"
+    [(ngModel)]="newTodoItem.title"
+    placeholder="Todo"
+    name="itemName"
+  />
+  <button mat-raised-button color="primary" type="submit">Add</button>
+  <ul>
+    <li *ngFor="let t of todos$ | async">
+    <!-- <li *ngFor="let t of (todos$ | async).todos"> -->
+      <span (click)="toggleTodo(t.id)" [class.completed]="t.isCompleted" style="cursor:crosshair">
+        {{ t.title }} - {{ t.lastUpdate }}
+      </span>
+      <!-- <button mat-raised-button color="warn" (click)="removeTodo(t.id)">
+        Remove
+      </button> -->
+    </li>
+  </ul>
+</form>
 <!-- <div>
 
   <div>
@@ -34,19 +54,3 @@
     </form>
   </div>
 </div> -->
-
-<form (ngSubmit)="addTodo()">
-<input type="text" [(ngModel)]="newTodoItem.title" placeholder="Todo" name="itemName"/>
-<button type="submit">Add</button>
-<ul>
-  <li *ngFor="let t of todos$ | async">
-     <span
-        (click)="toggleTodo(t)"
-        [class.completed]="t.isCompleted"
-        >
-        {{ t.title }} - lastUpdate: {{ t.lastUpdate }}
-      </span>
-    <button (click)="removeTodo(t.id)">Remove</button>
-   </li>
- </ul>
-</form>

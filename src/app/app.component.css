@@ -13,6 +13,12 @@ img {
   text-align: center;
 }
 
+.container {
+  background-image: url(https://ngrx.io/assets/images/header.svg);
+  margin: 0;
+  padding: 0;
+}
+
 .box {
 padding: 2rem;
 }
@@ -25,11 +31,13 @@ padding: 2rem;
   filter: drop-shadow();
 }
 
-.container {
-  background-image: url(https://ngrx.io/assets/images/header.svg);
-  margin: 0;
-  padding: 0;
+.messages {
+  padding: 0.8rem;
+  background: rgb(65, 98, 232);
+  color: white;
+  filter: drop-shadow();
 }
+
 .partition {
   float: left;
   padding: 20px;

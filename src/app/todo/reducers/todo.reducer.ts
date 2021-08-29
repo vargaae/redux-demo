@@ -1,13 +1,22 @@
 import { TodoItem } from '../models/todo-item';
 // import { createReducer, on } from '@ngrx/store';
 import { TodoActionTypes, TodoAction } from '../actions/todo.actions';
-import { on } from '@ngrx/store';
+import { reset } from '../actions/todo.actions';
+import { createReducer, on } from '@ngrx/store';
 
-// export interface TodoAppState {
-  // todos: any[];
-  // lastUpdate: Date;
-// }
+export interface TodoAppState {
+  todos: Array<TodoItem>;
+  lastUpdate: Date;
+}
 
+// const initialState: TodoAppState = {
+//   todos: [{
+//         id: "1775935f-36fd-467e-a667-09f95b917f6d",
+//         title: 'Study Angular',
+//         lastUpdate: '2021. 08. 20. 15:15:05'
+//       }],
+//   lastUpdate: null
+// };
 const initialState: Array<TodoItem> = [
   {
     id: "1775935f-36fd-467e-a667-09f95b917f6d",
@@ -15,26 +24,61 @@ const initialState: Array<TodoItem> = [
     lastUpdate: '2021. 08. 20. 15:15:05'
   }
 ]
-// lastUpdate: null
 
 // {
   // todos: [],
   // lastUpdate: null
 // }
 
-export function TodoReducer(state: Array<TodoItem> = initialState, action: TodoAction) {
-  switch (action.type) {
-    case TodoActionTypes.ADD_TODO:
-      return [...state, action.payload];
+function addTodo(state, action) {
+  return [...state, action.payload];
       // lastUpdate: new Date(),
+}
+
+function resetTodos(state, action) {
+  return {
+    ...state,
+    todos: [{}] 
+};
+}
+
+// // SHORTER NEWER WAY OF NGRX:
+// // reset is qorking and started to work on the add-remove-toggle actions 2021-08-29
+
+// const _todoReducer = createReducer(
+//   initialState,
+//   // on(addtodo, (state) => [...state]),
+//   // on(TodoActionTypes.ADD_TODO, (state) => [...state, action.payload]),
+//   //  {
+//   //   // Instead of the push() method, we use the concat() method because the former mutates
+//   //   // the original array, whereas the latter returns a new array.
+//   //   todos: state.todos.concat({ id: state.todos.length + 1, title: action.title }),
+//   //   lastUpdate: new Date()
+//   // }),
+//   // on(todoActions.removeTodo, (state) => state - 1),
+//   on(reset, (state) => [])
+//   // on(todoActions.getTodos, (state) => 0)
+//   // on(todoActions.toggleTodo, (state) => 0)
+// );
+
+// export function TodoDashboardReducer(state, action) {
+//   return _todoReducer(state, action);
+// }
+
+export function TodoReducer(
+  state: Array<TodoItem> = initialState, 
+    // state: TodoAppState = initialState, 
+    action: TodoAction
+    ) {
+  switch (action.type) {
+    case TodoActionTypes.ADD_TODO: return addTodo(state, action);
 
     case TodoActionTypes.REMOVE_TODO:
       return state.filter(item => item.id !== action.payload);
       // lastUpdate: new Date(),
 
+      case TodoActionTypes.CLEAR_TODOS: return resetTodos(state, action);
 
-      // case TodoActionTypes.CLEAR_TODO:
-      //   return       on(clearTodos, (state) => 0);
 
     // case TodoActionTypes.TOGGLE_TODO:
     //   // When modifying an item in an array, we should create a new array, and copy
@@ -81,21 +125,3 @@ export function TodoReducer(state: Array<TodoItem> = initialState, action: TodoA
       return state;
   }
 }
-
-// const _todoReducer = createReducer(
-//   initialState,
-//   on(todoActions.ADD_TODO, (state) => {
-//     // Instead of the push() method, we use the concat() method because the former mutates
-//     // the original array, whereas the latter returns a new array.
-//     todos: state.todos.concat({ id: state.todos.length + 1, title: action.title }),
-//     lastUpdate: new Date()
-//   }),
-//   on(todoActions.removeTodo, (state) => state - 1),
-//   on(todoActions.clearTodos, (state) => 0)
-//   on(todoActions.getTodos, (state) => 0)
-//   on(todoActions.toggleTodo, (state) => 0)
-// );
-
-// export function todoReducer(state, action) {
-//   return _todoReducer(state, action);
-// }

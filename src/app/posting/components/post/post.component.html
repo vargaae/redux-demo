@@ -11,19 +11,27 @@
 <span class="sr-only">Loading...</span>
   <div>
     <h4>
-      <!-- Download is ready! TEXT : -->
-      {{ post.text }}
       <p>
-        <input [(ngModel)]="text">
-        <button mat-raised-button color="primary" (click)="editText()">Change Title</button>
+        Downloaded Text:
+        <strong>{{ post.text }}</strong>
       </p>
 
-      <h4>Value: + {{ post.val }}</h4>
-      <h4>Votes: {{ post.votes }}</h4>
+      <p>
+        Downloaded Votes COUNTER:
+        <strong>{{ post.votes }}</strong> ->
+        <button mat-raised-button color="primary" (click)="vote(post, 1)">
+          Upvote - Value: + {{ post.val }}
+        </button>
+      </p>
 
-      <button mat-raised-button color="primary" (click)="vote(post, 1)">
-        Upvote
-      </button>
+      <h4>(Votes changes are saved on Firebase Real-time Database)</h4>
+
+      <p>
+        <input [(ngModel)]="text">
+        <button mat-raised-button color="primary" (click)="editText()">Change Title on this state</button>
+      </p>
+      <h4>(title is saved on Firebase Real-time Database, but with this button it is just changing in this state, don't save this)</h4>
+
       <!-- <button mat-raised-button color="warn" (click)="vote(post, -1)">
         Downvote
       </button> -->

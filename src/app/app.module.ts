@@ -50,6 +50,7 @@ import {MatButtonModule} from '@angular/material/button';
       post: postReducer,
       shopping: ShoppingReducer,
       todolisting: TodoReducer,
+      // tododashboard: TodoDashboardReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
