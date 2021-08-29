@@ -22,12 +22,18 @@ import { TodoDashboardComponent } from './todo/components/todo-dashboard/todo-da
 import { TodoListComponent } from './todo/components/todo-list/todo-list.component';
 import { TodoReducer } from './todo/reducers/todo.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './app.effects';
+import { AppEffects } from './store/app.effects';
 import { PostEffects } from './posting/effects/post.effects';
-import {MatButtonModule} from '@angular/material/button';
+import { MaterialModule } from './material-module';
+import { TodoApiComponent } from './todo/components/todo-api/todo-api.component';
 // import { TodoService } from './todo/services/todo.service';
 // import { NgRedux, NgReduxModule, select } from '@angular-redux/store';
 // import { rootReducer } from './store';
+import * as fromApp from './store/app.reducer';
+import { TodoComponent } from './todo/components/todo/todo.component';
+import { TodoToggleComponent } from './todo/components/todo-toggle/todo-toggle.component';
+import { TodoFetchComponent } from './todo/components/todo-fetch/todo-fetch.component';
+
 
 @NgModule({
   declarations: [
@@ -36,15 +42,22 @@ import {MatButtonModule} from '@angular/material/button';
     TodoListComponent,
     TodoDashboardComponent,
     PostComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    TodoApiComponent,
+    TodoComponent,
+    TodoToggleComponent,
+    TodoFetchComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    MaterialModule,
+
     // NgReduxModule,
     StoreModule.forRoot({
+      [fromApp.appFeatureKey]: fromApp.reducer,
       count: counterReducer,
       message: simpleReducer,
       post: postReducer,
@@ -63,8 +76,7 @@ import {MatButtonModule} from '@angular/material/button';
     EffectsModule.forRoot([
       PostEffects,
       AppEffects
-    ]),
-    MatButtonModule
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IAppState } from './store';
+import { IAppState } from './store/store';
 // import { IAppState, rootReducer } from './store';
 
 interface AppState {

@@ -1,0 +1,27 @@
+  <!-- Fetch Todos From An API-->
+  TODO: Change the USERS to TODO -> reducer,todo.component, action
+
+  <div id="usersContainer">
+    <h2>Fetch Todo Data</h2>
+    <ul id="users" *ngIf="facade.users$ | async as users; else fetchUsersBtn">
+      <ng-container *ngFor="let todo of users">
+        <todo-fetch [todo]="todo"></todo-fetch>
+      </ng-container>
+    </ul>
+
+    <ng-template #fetchUsersBtn>
+      <button mat-raised-button (click)="fetchTodos()">Fetch TODOS</button>
+    </ng-template>
+  </div>
+
+  <!-- ToggleTodos UI State -->
+  <div id="accordionContainer">
+    <h2>TODO_TOOGLE UI State</h2>
+    <todo-toggle
+      [open]="facade.accordionOpen$ | async"
+      (click)="toggleAccordion()"
+    >
+    </todo-toggle>
+  </div>
+
+  <todo-api></todo-api>

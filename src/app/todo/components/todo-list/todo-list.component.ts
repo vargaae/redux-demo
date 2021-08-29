@@ -1,9 +1,10 @@
+import { TodoItem } from './../../models/todo-item';
+import { addTodoSuccess } from './../../actions/todo.actions';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { TodoAppState } from '../../models/todo-app-state.model';
 import { v4 as uuid } from 'uuid';
-import { TodoItem } from '../../models/todo-item';
 import { AddTodoAction, RemoveTodoAction } from '../../actions/todo.actions';
 
 // import { TodoService } from '../../services/todo.service';
@@ -37,6 +38,24 @@ export class TodoListComponent implements OnInit {
     this.newTodoItem.id = uuid();
 
     this.store.dispatch(new AddTodoAction(this.newTodoItem));
+    this.newTodoItem = {
+      id: '',
+      title: '',
+      lastUpdate: new Date().toLocaleString(),
+    };
+  }
+
+  // this addTodoSuccess() method isn't transfers well somehow the todo
+  // maybe the syntax is wrong- error: not iterable, so need to change the assign type
+  addTodoSuccess() {
+    if (!this.newTodoItem.title) return;
+    this.newTodoItem.id = uuid();
+
+    console.log(this.newTodoItem);
+    // this.store.dispatch(new addTodoSuccess(this.newTodoItem));
+
+    this.store.dispatch(addTodoSuccess({payload: this.newTodoItem}));
+
     this.newTodoItem = {
       id: '',
       title: '',

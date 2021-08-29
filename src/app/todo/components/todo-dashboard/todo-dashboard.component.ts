@@ -14,7 +14,7 @@ import { TodoService } from '../../services/todo.service';
 })
 export class TodoDashboardComponent implements OnInit {
   todos$: Observable<Array<TodoItem>>;
-  lastUpdate$;
+  lastUpdate$: TodoItem;
   // todosCleared = new EventEmitter();
   // todos: number;
   // lastStudent$ = this.todos$.valueChanges().mergeAll().takeLast(1);

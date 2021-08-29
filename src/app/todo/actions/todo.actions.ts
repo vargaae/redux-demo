@@ -8,7 +8,13 @@ import { TodoItem } from '../models/todo-item';
 // export const TOGGLE_TODO = createAction('[Todo Component] TOGGLE_TODO');
 // // export const getTodos = createAction('[Todo Component] GetTodos');
 // export const REMOVE_TODO = createAction('[Todo Component] REMOVE_TODO');
-export const reset = createAction('[Todo Component] CLEAR_TODOS');
+export const reset = createAction('[TodoList Component] Clear Todos');
+export const addTodoSuccess = createAction(
+  '[TodoList Component] Add Todo',
+  props<{ payload: TodoItem }>()
+);
+
+// Earlier implementation:
 
 export enum TodoActionTypes {
   ADD_TODO = '[TODO] Add Todo',

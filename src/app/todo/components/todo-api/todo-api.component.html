@@ -1,0 +1,32 @@
+TODOS:
+<div class="api-box mat-elevation-z4">
+  <p>jsonplaceholder.typicode.com<br>
+    All HTTP methods are supported: <br />GET /todos GET /todos/1 GET
+    /todos/1/comments GET /comments?postId=1 <br />POST /todos <br />PUT
+    /todos/1 <br />
+    PATCH /todos/1 <br />DELETE /todos/1
+    <br />
+    <a href="https://jsonplaceholder.typicode.com/todos" target="_blank">TODOS JSON:</a>
+    <!-- 
+    <a href="https://jsonplaceholder.typicode.com/photos">PHOTOS</a> -->
+  </p>
+  <mat-form-field appearance="fill">
+    <input matInput (keyup.enter)="createTodo(title)" #title type="text" />
+  </mat-form-field>
+  <p>
+  <button mat-raised-button (click)="createTodo(title)">CREATE TODO</button>
+  <button mat-raised-button (click)="addTodo(title)">Add TODO</button>
+  </p>
+  <br />
+  <ul class="list-group">
+    <li *ngFor="let todo of todos" class="list-group-item">
+      <!-- <button mat-raised-button color="primary" (click)="updateTodo(todo)">
+        Update
+      </button>
+      <button mat-raised-button color="warn" (click)="deleteTodo(todo)">
+        Delete
+      </button> -->
+      {{ todo.title }}
+    </li>
+  </ul>
+</div>

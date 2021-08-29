@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { increment, decrement, reset } from '../counter.actions';
-import { IAppState } from '../store';
+import { IAppState } from '../store/store';
 
 @Component({
   selector: 'app-my-counter',
