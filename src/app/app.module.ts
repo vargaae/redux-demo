@@ -11,13 +11,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { counterReducer } from './counter.reducer';
+import { counterReducer } from './store/counter.reducer';
 import { MyCounterComponent } from './my-counter/my-counter.component';
 import { PostComponent } from './posting/components/post/post.component';
 import { postReducer } from './posting/reducers/post.reducer';
 import { ShoppingListComponent } from './shopping/components/shopping-list/shopping-list.component';
 import { ShoppingReducer } from './shopping/reducers/shopping.reducer';
-import { simpleReducer } from './simple.reducer';
+import { simpleReducer } from './store/simple.reducer';
 import { TodoDashboardComponent } from './todo/components/todo-dashboard/todo-dashboard.component';
 import { TodoListComponent } from './todo/components/todo-list/todo-list.component';
 import { TodoReducer } from './todo/reducers/todo.reducer';
@@ -33,7 +33,7 @@ import * as fromApp from './store/app.reducer';
 import { TodoComponent } from './todo/components/todo/todo.component';
 import { TodoToggleComponent } from './todo/components/todo-toggle/todo-toggle.component';
 import { TodoFetchComponent } from './todo/components/todo-fetch/todo-fetch.component';
-
+import { rootReducer } from './store/app.reducer';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { TodoFetchComponent } from './todo/components/todo-fetch/todo-fetch.comp
     TodoApiComponent,
     TodoComponent,
     TodoToggleComponent,
-    TodoFetchComponent
+    TodoFetchComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,10 +58,11 @@ import { TodoFetchComponent } from './todo/components/todo-fetch/todo-fetch.comp
     // NgReduxModule,
     StoreModule.forRoot({
       [fromApp.appFeatureKey]: fromApp.reducer,
-      count: counterReducer,
       message: simpleReducer,
       post: postReducer,
       shopping: ShoppingReducer,
+      todo: rootReducer,
+      count: counterReducer,
       todolisting: TodoReducer,
       // tododashboard: TodoDashboardReducer,
     }),
@@ -70,16 +71,16 @@ import { TodoFetchComponent } from './todo/components/todo-fetch/todo-fetch.comp
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     BrowserAnimationsModule,
-    EffectsModule.forRoot([
-      PostEffects,
-      AppEffects
-    ])
+    EffectsModule.forRoot([PostEffects, AppEffects]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   // constructor(ngRedux: NgRedux<IAppState>) {

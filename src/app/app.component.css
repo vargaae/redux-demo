@@ -33,7 +33,14 @@ padding: 2rem;
 
 .messages {
   padding: 0.8rem;
-  background: rgb(65, 98, 232);
+  background: #34495e;
+  color: white;
+  filter: drop-shadow();
+}
+
+.todos {
+  padding: 0.8rem;
+  background: radial-gradient(white, rgb(65, 98, 232));
   color: white;
   filter: drop-shadow();
 }

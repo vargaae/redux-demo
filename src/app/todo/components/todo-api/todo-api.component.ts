@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../../data/data.service';
 import { TodosService } from '../../data/todos.service';
 import { TodosApiStoreService } from '../../data/todos-api-store.service';
+import { AddTodoAction } from '../../actions/todo.actions';
 
 @Component({
   selector: 'todo-api',
@@ -21,6 +22,7 @@ export class TodoApiComponent implements OnInit {
 
   ngOnInit(): void {
     // this.todoService.loadTodos()
+    // this.todos$ = this.store.select((store) => store.todolisting);
 
     this.service.getAll()
     .subscribe(todos => this.todos = todos);
@@ -89,6 +91,7 @@ export class TodoApiComponent implements OnInit {
     this.service.create(todo)
     .subscribe(
       newTodo => { 
+    // this.store.dispatch(new AddTodoAction(this.newTodoItem));
     // this.store.dispatch({ type: 'ADD_TODO', todo: todo })
     
         todo.id = newTodo;

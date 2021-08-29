@@ -1,4 +1,6 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { Action, combineReducers, createReducer, on } from '@ngrx/store';
+import { counterReducer } from './counter.reducer';
+import { TodoReducer } from '../todo/reducers/todo.reducer';
 import * as AppActions from './app.actions';
 
 
@@ -42,6 +44,13 @@ export const appReducer = createReducer(
   }))
 );
 
+
+
 export function reducer(state: AppState | undefined, action: Action) {
   return appReducer(state, action);
 }
+
+export const rootReducer = combineReducers({
+  tasking: TodoReducer,
+  messaging: counterReducer
+});

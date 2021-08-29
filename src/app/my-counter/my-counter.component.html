@@ -1,16 +1,12 @@
 <div>
-<p>
-
+<h3>
+  New Messages: {{ count$ | async }}
   <button mat-raised-button color="primary" (click)="decrement()">-</button>
-
-  Messages: {{ count$ | async }}
 
   <button mat-raised-button color="accent" (click)="increment()">+</button>
 
   <button mat-raised-button color="warn" (click)="reset()">Reset Counter</button>
-</p>
-
-
+</h3>
 </div>
 
 

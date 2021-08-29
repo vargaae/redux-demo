@@ -33,6 +33,11 @@ export class TodoListComponent implements OnInit {
     // this.todos$ = store.select('todos');
   }
 
+  
+  ngOnInit() {
+    this.todos$ = this.store.select((store) => store.todolisting);
+  }
+
   addTodo() {
     if (!this.newTodoItem.title) return;
     this.newTodoItem.id = uuid();
@@ -79,11 +84,6 @@ export class TodoListComponent implements OnInit {
 
   // this.store.dispatch(todoActions.ADD_TODO());
   // }
-
-  ngOnInit() {
-    this.todos$ = this.store.select((store) => store.todolisting);
-  }
-
 
   toggleTodo(id: any) {
     this.store.dispatch(new RemoveTodoAction(id));
